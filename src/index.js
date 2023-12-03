@@ -39,14 +39,17 @@ function searchFile(directory, targetFileName) {
     return found;
   }
 
-let day = date.getDate();
-let month = date.getMonth() + 1;
-let year = date.getFullYear();
-let = y = year.toString();  
+// let day = date.getDate();
+// let month = date.getMonth() + 1;
+// let year = date.getFullYear();
+// let = y = year.toString();  
 
 // This arrangement can be altered based on how we want the date's format to appear.
-let currentDate = `${day}/${month}/${y[2]}${y[3]}`;
-console.log(currentDate); // "17/6/2022"
+// let currentDate = `${day}/${month}/${y[2]}${y[3]}`;
+var datetime = new Date().toLocaleString()
+
+
+// console.log(datetime); // "17/6/2022"
 let Category1;
 let Not_Available1 = "";
 let MSG = "";
@@ -54,7 +57,7 @@ let Fimg,Simg,Timg,id,amount,shoe_name;
 var totalprice=0;
 let Full_name,Mobile_number,City1,Postal,Addres,order_no;
 
-console.log(currentDate);
+// console.log(currentDate);
 
 
 // var Product = {};
@@ -209,7 +212,7 @@ app.post('/payment',async(req,res)=>{
                 {
                     var sql14 = "INSERT INTO Order_Details (Order_id, Pid ,size ,quantity,price) VALUES ?";
                     var values1 = [
-                        [order_no,rows2[i].Pid,rows2[i].size7,rows2[i].quantity,rows2[i].price]
+                        [order_no,rows2[i].Pid,rows2[i].size,rows2[i].quantity,rows2[i].price]
                     ];
                     const [rows3,fields2] = await db.query(sql14,[values1]);
 
@@ -219,7 +222,7 @@ app.post('/payment',async(req,res)=>{
                 
                 var sql16 = "INSERT INTO Payment (Order_id, Method,Total_amount,Dates) VALUES ?";
                 var values = [
-                    [order_no, Method,totalprice,currentDate]
+                    [order_no, Method,totalprice,datetime]
                 ];
                 await db.query(sql16,[values]);
                 
@@ -302,7 +305,7 @@ app.post('/payment',async(req,res)=>{
                 
                 var sql16 = "INSERT INTO Payment (Order_id, Method,Total_amount,Dates) VALUES ?";
                 var values = [
-                    [order_no, Method,totalprice,currentDate]
+                    [order_no, Method,totalprice,datetime]
                 ];
                 await db.query(sql16,[values]);
                 
@@ -378,7 +381,7 @@ app.post('/payment',async(req,res)=>{
                 {
                     var sql14 = "INSERT INTO Order_Details (Order_id, Pid ,size ,quantity,price) VALUES ?";
                     var values1 = [
-                        [order_no,rows2[i].Pid,rows2[i].size7,rows2[i].quantity,rows2[i].price]
+                        [order_no,rows2[i].Pid,rows2[i].size,rows2[i].quantity,rows2[i].price]
                     ];
                     const [rows3,fields2] = await db.query(sql14,[values1]);
 
@@ -388,7 +391,7 @@ app.post('/payment',async(req,res)=>{
                 
                 var sql16 = "INSERT INTO Payment (Order_id,Method,Total_amount,Dates) VALUES ?";
                 var values = [
-                    [order_no,Method,totalprice,currentDate]
+                    [order_no,Method,totalprice,datetime]
                 ];
                 const [rows4,fields3] = await db.query(sql16,[values]);
                 
@@ -453,12 +456,10 @@ app.post('/payment',async(req,res)=>{
                     const [rows3,fields2] = await db.query(sql14,[values1]);
                 }
 
-
-
                 
                 var sql16 = "INSERT INTO Payment (Order_id,Method,Total_amount,Dates) VALUES ?";
                 var values = [
-                    [order_no,Method,totalprice,currentDate]
+                    [order_no,Method,totalprice,datetime]
                 ];
                 const [rows4,fields3] = await db.query(sql16,[values]);
 
@@ -517,7 +518,7 @@ app.get('/formals',async(req,res)=>{
     var cat1 = 'Formals';
     var sql = "SELECT * FROM Product WHERE Pid in (Select Pid FROM Product_Category WHERE Category=?)";
     const [Product3,fields22] = await db.query(sql,[cat1]);
-    res.render("shop",{Product3});
+    res.render("formals",{Product3});
 });
 
 app.get('/casuals',async(req,res)=>{
@@ -888,7 +889,5 @@ app.get('/*',(req,res)=>{
 app.listen(port,'localhost',()=>{
     console.log(`Listening on port number : ${port}`);
 });
-
-
 
 connection.end();
