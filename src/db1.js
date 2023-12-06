@@ -505,22 +505,22 @@ const connection = require("./db/Conn");
 
 
 
-sql = "SELECT * from Payment_Method";
-connection.query(sql, function (err, result) {
-  if (err) throw err;
-  console.log(result);
-});
-sql = "SELECT * from Payment";
-connection.query(sql, function (err, result) {
-  if (err) throw err;
-  console.log(result);
-});
-sql = "SELECT * from Customer_Purchasing";
-connection.query(sql, function (err, result) {
-  if (err) throw err;
-  console.log(result);
-});
-sql = "SELECT * from Order_Details";
+// sql = "SELECT * from Payment_Method";
+// connection.query(sql, function (err, result) {
+//   if (err) throw err;
+//   console.log(result);
+// });
+// sql = "SELECT * from Payment";
+// connection.query(sql, function (err, result) {
+//   if (err) throw err;
+//   console.log(result);
+// });
+// sql = "SELECT * from Customer_Purchasing";
+// connection.query(sql, function (err, result) {
+//   if (err) throw err;
+//   console.log(result);
+// });
+sql = "SELECT * from Product_sizes where Pid = 1241";
 connection.query(sql, function (err, result) {
   if (err) throw err;
   console.log(result);

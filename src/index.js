@@ -248,24 +248,23 @@ app.post('/payment',async(req,res)=>{
                     await db.query(sql18,[rows5[i].quantity,rows5[i].Pid,rows5[i].size]);
                 }
                 
-                var sql15 = "DELETE FROM Cart";
-                await db.query(sql15);
-
-
+                
+                
                 const objectArray = [];
-
+                
                 var sql23 = "SELECT * FROM Customer_Purchasing WHERE Order_id = ?";
                 const [rows9,fields11] = await db.query(sql23,[order_no]);
-
-
+                
+                
                 var sql24 = "SELECT * FROM Order_Details WHERE Order_id = ?";
                 const [rows10,fields12] = await db.query(sql24,[order_no]);
-
+                var sq33 = "SELECT C.size,C.Pid,P.Firstimg,P.Pname,P.price,C.quantity,(P.price*C.quantity) AS PQ FROM Cart AS C JOIN Product P ON C.Pid=P.Pid";
+                const [Cartt,fields13] = await db.query(sq33);
                 for (let i = 0; i < rows10.length; i++) 
                 {
                     var sql25 = "SELECT * FROM Product WHERE Pid = ?";
                     const [rows11,fields22] = await db.query(sql25,[rows10[i].Pid]);
-
+                    
                     objectArray.push({
                         Firstimg: rows11[0].Firstimg,
                         quantity: rows10[i].quantity,
@@ -275,7 +274,9 @@ app.post('/payment',async(req,res)=>{
                     });
                 }
 
-                res.render("ThankuPage",{objectArray});
+                var sql15 = "DELETE FROM Cart";
+                await db.query(sql15);
+                res.render("ThankuPage",{Cartt});
             }
             else
             {
@@ -332,10 +333,8 @@ app.post('/payment',async(req,res)=>{
                     await db.query(sql18,[rows5[i].quantity,rows5[i].Pid,rows5[i].size]);
                 }
 
-                var sql15 = "DELETE FROM Cart";
-                await db.query(sql15);
-
-
+                
+                
                 const objectArray = [];
 
                 var sql23 = "SELECT * FROM Customer_Purchasing WHERE Order_id = ?";
@@ -344,7 +343,8 @@ app.post('/payment',async(req,res)=>{
 
                 var sql24 = "SELECT * FROM Order_Details WHERE Order_id = ?";
                 const [rows10,fields12] = await db.query(sql24,[order_no]);
-
+                var sq33 = "SELECT C.size,C.Pid,P.Firstimg,P.Pname,P.price,C.quantity,(P.price*C.quantity) AS PQ FROM Cart AS C JOIN Product P ON C.Pid=P.Pid";
+                const [Cartt,fields13] = await db.query(sq33);
                 for (let i = 0; i < rows10.length; i++) 
                 {
                     var sql25 = "SELECT * FROM Product WHERE Pid = ?";
@@ -358,8 +358,10 @@ app.post('/payment',async(req,res)=>{
                         size: rows10[i].size
                     });
                 }
-
-                res.render("ThankuPage",{objectArray});
+                
+                var sql15 = "DELETE FROM Cart";
+                await db.query(sql15);
+                res.render("ThankuPage",{Cartt});
             }
         }
         else if(Method=="COD")
@@ -404,19 +406,19 @@ app.post('/payment',async(req,res)=>{
                     await db.query(sql18,[rows5[i].quantity,rows5[i].Pid,rows5[i].size]);
                 }
                 
-                var sql15 = "DELETE FROM Cart";
-                await db.query(sql15);
-
-
+                
                 const objectArray = [];
-
+                
                 var sql23 = "SELECT * FROM Customer_Purchasing WHERE Order_id = ?";
                 const [rows9,fields11] = await db.query(sql23,[order_no]);
-
-
+                
+                
                 var sql24 = "SELECT * FROM Order_Details WHERE Order_id = ?";
                 const [rows10,fields12] = await db.query(sql24,[order_no]);
+                
 
+                var sq33 = "SELECT C.size,C.Pid,P.Firstimg,P.Pname,P.price,C.quantity,(P.price*C.quantity) AS PQ FROM Cart AS C JOIN Product P ON C.Pid=P.Pid";
+                const [Cartt,fields13] = await db.query(sq33);
                 for (let i = 0; i < rows10.length; i++) 
                 {
                     var sql25 = "SELECT * FROM Product WHERE Pid = ?";
@@ -431,7 +433,10 @@ app.post('/payment',async(req,res)=>{
                     });
                 }
 
-                res.render("ThankuPage",{objectArray});
+                res.render("ThankuPage",{Cartt});
+                
+                var sql15 = "DELETE FROM Cart";
+                await db.query(sql15);
             }
             else
             {
@@ -473,25 +478,24 @@ app.post('/payment',async(req,res)=>{
                     await db.query(sql18,[rows5[i].quantity,rows5[i].Pid,rows5[i].size]);
                 }
 
-                var sql15 = "DELETE FROM Cart";
-                await db.query(sql15);
-
-
-
+                
+                
+                
                 const objectArray = [];
-
+                
                 var sql23 = "SELECT * FROM Customer_Purchasing WHERE Order_id = ?";
                 const [rows9,fields11] = await db.query(sql23,[order_no]);
-
-
+                
+                
                 var sql24 = "SELECT * FROM Order_Details WHERE Order_id = ?";
                 const [rows10,fields12] = await db.query(sql24,[order_no]);
-
+                var sq33 = "SELECT C.size,C.Pid,P.Firstimg,P.Pname,P.price,C.quantity,(P.price*C.quantity) AS PQ FROM Cart AS C JOIN Product P ON C.Pid=P.Pid";
+                const [Cartt,fields13] = await db.query(sq33);
                 for (let i = 0; i < rows10.length; i++) 
                 {
                     var sql25 = "SELECT * FROM Product WHERE Pid = ?";
                     const [rows11,fields22] = await db.query(sql25,[rows10[i].Pid]);
-
+                    
                     objectArray.push({
                         Firstimg: rows11[0].Firstimg,
                         quantity: rows10[i].quantity,
@@ -500,8 +504,10 @@ app.post('/payment',async(req,res)=>{
                         size: rows10[i].size
                     });
                 }
+                var sql15 = "DELETE FROM Cart";
+                await db.query(sql15);
 
-                res.render("ThankuPage",{objectArray});
+                res.render("ThankuPage",{Cartt});
             }
         }
         else
@@ -686,7 +692,14 @@ app.post('/single',async(req,res)=>{
 
 
 app.get('/insertproduct',(req,res)=>{
-    res.render("insertproduct");
+    if (admin1==true) {
+        res.render("insertproduct");
+    }
+    else
+    {
+        res.render("loginadmin");
+    }
+
 });
 
 app.post('/insertproduct',async(req,res)=>{
@@ -706,9 +719,14 @@ app.post('/insertproduct',async(req,res)=>{
     let Quantity41 = req.body.Quantity41;
     let Quantity42 = req.body.Quantity42;
     let Quantity43 = req.body.Quantity43;
-
-
-
+    if (Quantity40<=0 ||Quantity41<=0 ||Quantity42<=0 ||Quantity43<=0) {
+        res.render("insertproduct",{MSGGG: "InValid Quantity"});
+        return;
+    }
+    if (price<=0) {
+        res.render("insertproduct",{MSGGG: "InValid Price"});
+        return;
+    }
     count1 += searchFile('../images',uploadimage1);
     count1 += searchFile('../images',uploadimage2);
     count1 += searchFile('../images',uploadimage3);
@@ -761,7 +779,13 @@ app.post('/insertproduct',async(req,res)=>{
 });
 
 app.get('/stockupdate',(req,res)=>{
-    res.render("stockupdate",{MSGGG: ""});
+    if (admin1==true) {     
+        res.render("stockupdate",{MSGGG: ""});
+    }
+    else
+    {
+        res.render("loginadmin");
+    }
 });
 
 app.post('/stockupdate',async(req,res)=>{
@@ -770,25 +794,37 @@ app.post('/stockupdate',async(req,res)=>{
         let pid = req.body.productid;
         let size = req.body.productsize;
         let q = req.body.quantity;
-    
-        var sql27 = "SELECT * FROM Product_sizes WHERE Pid = ? AND size = ?";
-        const [rows13,fields13] = await db.query(sql27,[pid,size]);
-        if(rows13[0].Pid==pid)
-        {
-            var sql28 = "UPDATE Product_sizes SET quantity = quantity + ? WHERE Pid = ? AND size = ?";
-            await db.query(sql28,[q,pid,size]);
-            res.render("stockupdate",{MSGGG: "Stock Updated"});
+        if (q<=0) {
+            res.render("stockupdate",{MSGGG: "Invalid Quantity"});
         }
+        else
+        {
+            var sql27 = "SELECT * FROM Product_sizes WHERE Pid = ? AND size = ?";
+            const [rows13,fields13] = await db.query(sql27,[pid,size]);
+            if(rows13[0].Pid==pid)
+            {
+                var sql28 = "UPDATE Product_sizes SET quantity = quantity + ? WHERE Pid = ? AND size = ?";
+                await db.query(sql28,[q,pid,size]);
+                res.render("stockupdate",{MSGGG: "Stock Updated"});
+            }
+        }
+    
     }
     catch(err)
     {
-        res.render("stockupdate",{MSGGG: "Invalid Product Id"}); 
+        res.render("stockupdate",{MSGGG: "Invalid Data input"}); 
     }
     
 });
 
 app.get('/checkrecord',(req,res)=>{
-    res.render("CheckRecord",{MSGGG: "Enter your Order Id To Search Records"});
+    if (admin1==true) {     
+        res.render("CheckRecord",{MSGGG: "Enter your Order Id To Search Records"});
+    }
+    else
+    {
+        res.render("loginadmin");
+    }
 });
 
 app.post('/checkrecord',async(req,res)=>{
@@ -877,10 +913,6 @@ app.post('/loginadmin',(req,res)=>{
     
 });
 
-
-app.get('/test',(req,res)=>{
-    res.render("test");
-});
 
 app.get('/*',(req,res)=>{
     res.render("404");
