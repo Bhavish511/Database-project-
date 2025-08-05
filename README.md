@@ -105,7 +105,7 @@ This project is licensed under the [W3Layouts License](./w3layouts-License.txt).
 
 ## 👨‍💻 Author
 
-- **Your Name** – [@yourgithub](https://github.com/yourgithub)
+- **Bhavish Kumar** – [@yourgithub](https://github.com/Bhavish511)
 
 ---
 
