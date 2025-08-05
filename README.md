@@ -50,8 +50,8 @@ A responsive, full-featured e-commerce web application built using HTML, CSS, Ja
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/shoestore.git
-cd shoestore
+git clone https://github.com/Bhavish511/Database-project-.git
+cd Database-project-
 ```
 
 2. Install dependencies:
