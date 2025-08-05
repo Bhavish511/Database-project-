@@ -1,4 +1,4 @@
-# ShoeStore E-commerce Website
+# Downy Shoes E-commerce Website
 
 A responsive, full-featured e-commerce web application built using HTML, CSS, JavaScript, and Handlebars with Node.js backend. The project includes a shopping cart, product views, checkout process, admin panel, and a flexible UI based on templates.
 
